@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <h2>Legal System Dashboard</h2>
+
+        <!-- Upcoming Deadlines -->
+        <div class="card mb-4">
+            <div class="card-header">Upcoming Deadlines</div>
+            <div class="card-body">
+                <ul>
+                    {% for deadline in upcoming_deadlines %}
+                        <li>{{ deadline.date }} - {{ deadline.description }} (Case: {{ deadline.case.title }})</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- Case Status Chart -->
+        <div class="card mb-4">
+            <div class="card-header">Case Status Distribution</div>
+            <div class="card-body">
+                <canvas id="caseStatusChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Billing Efficiency -->
+        <div class="card mb-4">
+            <div class="card-header">Billing Efficiency</div>
+            <div class="card-body">
+                <p>Total Hours: {{ total_hours }} hrs</p>
+                <p>Billed Hours: {{ billed_hours }} hrs</p>
+                <p>Efficiency: {{ efficiency }}%</p>
+            </div>
+        </div>
+
+        <!-- Pro Bono Cases -->
+        <div class="card">
+            <div class="card-header">Pro Bono Cases</div>
+            <div class="card-body">
+                <p>Total Pro Bono Cases: {{ pro_bono_cases }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js Integration -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Case Status Chart
+        const ctx = document.getElementById('caseStatusChart').getContext('2d');
+        const caseStatusData = {
+            labels: [{% for stat in case_stats %}"{{ stat.status }}",{% endfor %}],
+            datasets: [{
+                label: 'Cases',
+                data: [{% for stat in case_stats %}{{ stat.count }},{% endfor %}],
+                backgroundColor: ['#4e73df', '#1cc88a', '#f6c23e']
+            }]
+        };
+        new Chart(ctx, {
+            type: 'bar',
+            data: caseStatusData
+        });
+    </script>
+{% endblock %}

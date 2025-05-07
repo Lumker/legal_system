@@ -1,0 +1,78 @@
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.pyc
+*.py~
+*.db
+*.sqlite3
+
+# Virtual Environment
+venv/
+env/
+*.env
+.env
+.envs/
+.virtualenv/
+.venv/
+
+# Django
+local_settings.py
+/staticfiles/
+/media/
+/logs/
+*.log
+*.pot
+*.mo
+*.po
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# IDE & OS
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+.DS_Store
+desktop.ini
+$RECYCLE.BIN/
+System Volume Information/
+
+# Docker
+docker-compose.override.yml
+*.kdev4
+.Dockerfile
+docker/
+
+# Test Coverage
+htmlcov/
+.coverage
+.pytest_cache/
+
+# Build & Deployment
+*.bak
+*.orig
+*.rej
+*~
+*.retry
+*.sh
+*.bat
+*.ps1
+*.exe
+*.dll
+*.so
+*.ttf
+*.woff
+*.woff2
+
+# Localizations
+locale/
+
+# Emails (for Django console backend)
+emails/
+
+# Django Simple History
+simple_history/

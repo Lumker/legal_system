@@ -1,0 +1,6 @@
+# Enforce Unix line endings
+* text=auto eol=lf
+*.py text
+*.html text
+*.css text
+*.js text
